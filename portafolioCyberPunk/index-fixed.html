@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FullStack Developer - Portafolio</title>
+  <meta name="description"
+    content="Portafolio de FullStack Developer especializado en React, Node.js, TypeScript y tecnologías de vanguardia">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles-fixed.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Menú móvil
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      menuBtn.addEventListener('click', function () {
+        if (menu.classList.contains('hidden')) {
+          menu.classList.remove('hidden');
+          menuIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        } else {
+          menu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      });
+      document.querySelectorAll('.mobile-menu-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        });
+      });
+    });
+    // Año dinámico en el footer
+    document.addEventListener('DOMContentLoaded', function () {
+      var yearSpan = document.getElementById('year');
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+    });
+  </script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+            poppins: ['Poppins', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+            'cyber-scan': 'cyber-scan 2s linear infinite',
+          },
+          keyframes: {
+            'float': {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            'glow-pulse': {
+              '0%, 100%': { boxShadow: '0 0 20px hsl(280 100% 50% / 0.5)' },
+              '50%': { boxShadow: '0 0 40px hsl(280 100% 50% / 0.8), 0 0 60px hsl(280 100% 50% / 0.6)' },
+            },
+            'cyber-scan': {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' },
+            },
+          }
+        }
+      }
+    }
+  </script>
+
+
+</head>
+
+<body class="bg-background text-foreground font-inter antialiased cyber-grid">
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 animate-float mt-2 rounded-lg flex items-center justify-center">
+            <span class="text-sm font-bold text-white">M</span>
+          </div>
+          <span class="text-xl font-poppins font-bold gradient-text">
+            Miguel
+          </span>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#inicio"
+            class="text-foreground/80 hover:text-primary transition-all duration-300 font-inter font-medium relative group">
+            Inicio
+            <span
+              class="absolute bottom-1 left- w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#habilidades"
+            class="text-foreground/80 hover:text-primary transition-all duration-300 font-inter font-medium relative group">
+            Habilidades
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#proyectos"
+            class="text-foreground/80 hover:text-primary transition-all duration-300 font-inter font-medium relative group">
+            Proyectos
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+
+          <a href="#contacto"
+            class="text-foreground/80 hover:text-primary transition-all duration-300 font-inter font-medium relative group">
+            Contacto
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-foreground hover:text-primary transition-colors">
+          <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-4">
+          <a href="#inicio"
+            class="mobile-menu-link text-foreground/80 hover:text-primary transition-all duration-300 font-inter font-medium py-2 border-b border-white/10">
+            Inicio
+          </a>
+          <a href="#habilidades"
+            class="mobile-menu-link text-foreground/80 hover:text-primary transition-all duration-300 font-inter font-medium py-2 border-b border-white/10">
+            Habilidades
+          </a>
+          <a href="#proyectos"
+            class="mobile-menu-link text-foreground/80 hover:text-primary transition-all duration-300 font-inter font-medium py-2 border-b border-white/10">
+            Proyectos
+          </a>
+          <a href="#contacto"
+            class="mobile-menu-link text-foreground/80 hover:text-primary transition-all duration-300 font-inter font-medium py-2 border-b border-white/10">
+            Contacto
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <!-- Cyber Grid Background -->
+      <div class="absolute inset-0 cyber-grid opacity-30"></div>
+
+      <!-- Floating Elements -->
+
+      <div
+        class="absolute top-1/2 right-20 w-16 h-16 border border-destructive/20 rounded-full animate-float neon-green">
+      </div>
+
+      <div
+        class="absolute top-16 left-23 w-20 h-20 border border-destructive/20 rounded-full animate-float  neon-purple ">
+      </div>
+
+      <div
+        class="absolute top-1/2 left-10 w-28 h-28 border border-destructive/20 rounded-full animate-float neon-red   ">
+      </div>
+
+      <div class="container mx-auto px-6 text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+          <!-- Main Title -->
+          <h1 class="text-6xl md:text-8xl font-poppins font-bold mb-6">
+            <span class="gradient-text">Full Stack</span>
+            <br />
+            <span class="text-foreground">Developer</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-xl md:text-2xl text-muted-foreground mb-8 font-inter leading-relaxed">
+            Creando experiencias digitales del futuro con
+            <span class="text-primary font-semibold"> tecnologías avanzadas</span> y
+            <span class="text-accent font-semibold"> diseño innovador</span>
+          </p>
+
+          <!-- Description -->
+          <p class="text-lg text-muted-foreground/80 mb-12 max-w-2xl mx-auto font-inter">
+            Especializado en React, Node.js, TypeScript y tecnologías de vanguardia.
+            Transformando ideas complejas en soluciones digitales elegantes y funcionales.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <button
+              class="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-semibold px-8 py-3 rounded-md neon-purple hover-glow transition-all duration-300">
+              Ver Proyectos
+              <svg class="inline ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                </path>
+              </svg>
+            </button>
+            <button
+              class="border border-accent text-accent hover:bg-accent hover:text-accent-foreground font-inter font-semibold px-8 py-3 rounded-md glass hover-glow transition-all duration-300">
+              Descargar CV
+            </button>
+          </div>
+
+          <!-- Social Links -->
+          <div class="flex justify-center space-x-6">
+            <a href="#"
+              class="w-12 h-12 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:neon-purple transition-all duration-300 hover-glow">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-12 h-12 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-accent hover:neon-green transition-all duration-300 hover-glow">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-12 h-12 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-destructive hover:neon-red transition-all duration-300 hover-glow">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="py-20 relative">
+      <div class="container mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">
+            <span class="gradient-text">Tecnologías</span>
+            <span class="text-foreground"> & Habilidades</span>
+          </h2>
+          <p class="text-xl text-muted-foreground font-inter max-w-2xl mx-auto">
+            Dominio completo del stack tecnológico moderno para crear soluciones escalables y eficientes
+          </p>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div class="glass-card rounded-2xl p-8 hover-glow transition-all duration-500 group text-center">
+            <!-- Icon -->
+            <div
+              class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center group-hover:neon-purple transition-all duration-300">
+              <div class="text-primary group-hover:text-white transition-colors duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                  </path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Skill Name -->
+            <h3
+              class="text-2xl font-poppins font-bold text-foreground mb-4 group-hover:gradient-text transition-all duration-300">
+              HTML
+            </h3>
+
+            <!-- Progress Circle -->
+            <div class="relative w-24 h-24 mx-auto mb-4">
+              <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                <!-- Background Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--muted))" stroke-width="8" fill="none"
+                  class="opacity-20"></circle>
+                <!-- Progress Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--primary))" stroke-width="8" fill="none"
+                  stroke-linecap="round" stroke-dasharray="238.76 251"
+                  class="transition-all duration-1000 ease-out drop-shadow-[0_0_8px_hsl(var(--primary))]"></circle>
+              </svg>
+              <!-- Percentage -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-primary">95%</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm text-muted-foreground font-inter">
+              Estructura semántica y accesible
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 hover-glow transition-all duration-500 group text-center"
+            style="animation-delay: 0.1s;">
+            <!-- Icon -->
+            <div
+              class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center group-hover:neon-purple transition-all duration-300">
+              <div class="text-primary group-hover:text-white transition-colors duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z">
+                  </path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Skill Name -->
+            <h3
+              class="text-2xl font-poppins font-bold text-foreground mb-4 group-hover:gradient-text transition-all duration-300">
+              CSS
+            </h3>
+
+            <!-- Progress Circle -->
+            <div class="relative w-24 h-24 mx-auto mb-4">
+              <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                <!-- Background Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--muted))" stroke-width="8" fill="none"
+                  class="opacity-20"></circle>
+                <!-- Progress Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--primary))" stroke-width="8" fill="none"
+                  stroke-linecap="round" stroke-dasharray="226.19 251"
+                  class="transition-all duration-1000 ease-out drop-shadow-[0_0_8px_hsl(var(--primary))]"></circle>
+              </svg>
+              <!-- Percentage -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-primary">90%</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm text-muted-foreground font-inter">
+              Diseño responsivo y animaciones
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 hover-glow transition-all duration-500 group text-center"
+            style="animation-delay: 0.2s;">
+            <!-- Icon -->
+            <div
+              class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center group-hover:neon-purple transition-all duration-300">
+              <div class="text-primary group-hover:text-white transition-colors duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                  </path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Skill Name -->
+            <h3
+              class="text-2xl font-poppins font-bold text-foreground mb-4 group-hover:gradient-text transition-all duration-300">
+              Tailwind CSS
+            </h3>
+
+            <!-- Progress Circle -->
+            <div class="relative w-24 h-24 mx-auto mb-4">
+              <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                <!-- Background Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--muted))" stroke-width="8" fill="none"
+                  class="opacity-20"></circle>
+                <!-- Progress Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--primary))" stroke-width="8" fill="none"
+                  stroke-linecap="round" stroke-dasharray="231.51 251"
+                  class="transition-all duration-1000 ease-out drop-shadow-[0_0_8px_hsl(var(--primary))]"></circle>
+              </svg>
+              <!-- Percentage -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-primary">92%</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm text-muted-foreground font-inter">
+              Framework utility-first
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 hover-glow transition-all duration-500 group text-center"
+            style="animation-delay: 0.3s;">
+            <!-- Icon -->
+            <div
+              class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center group-hover:neon-purple transition-all duration-300">
+              <div class="text-primary group-hover:text-white transition-colors duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Skill Name -->
+            <h3
+              class="text-2xl font-poppins font-bold text-foreground mb-4 group-hover:gradient-text transition-all duration-300">
+              JavaScript
+            </h3>
+
+            <!-- Progress Circle -->
+            <div class="relative w-24 h-24 mx-auto mb-4">
+              <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                <!-- Background Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--muted))" stroke-width="8" fill="none"
+                  class="opacity-20"></circle>
+                <!-- Progress Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--primary))" stroke-width="8" fill="none"
+                  stroke-linecap="round" stroke-dasharray="221.12 251"
+                  class="transition-all duration-1000 ease-out drop-shadow-[0_0_8px_hsl(var(--primary))]"></circle>
+              </svg>
+              <!-- Percentage -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-primary">88%</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm text-muted-foreground font-inter">
+              ES6+ y programación funcional
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 hover-glow transition-all duration-500 group text-center"
+            style="animation-delay: 0.4s;">
+            <!-- Icon -->
+            <div
+              class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center group-hover:neon-purple transition-all duration-300">
+              <div class="text-primary group-hover:text-white transition-colors duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01">
+                  </path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Skill Name -->
+            <h3
+              class="text-2xl font-poppins font-bold text-foreground mb-4 group-hover:gradient-text transition-all duration-300">
+              Node.js
+            </h3>
+
+            <!-- Progress Circle -->
+            <div class="relative w-24 h-24 mx-auto mb-4">
+              <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                <!-- Background Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--muted))" stroke-width="8" fill="none"
+                  class="opacity-20"></circle>
+                <!-- Progress Circle -->
+                <circle cx="50" cy="50" r="40" stroke="hsl(var(--primary))" stroke-width="8" fill="none"
+                  stroke-linecap="round" stroke-dasharray="213.63 251"
+                  class="transition-all duration-1000 ease-out drop-shadow-[0_0_8px_hsl(var(--primary))]"></circle>
+              </svg>
+              <!-- Percentage -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-primary">85%</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm text-muted-foreground font-inter">
+              Backend y APIs RESTful
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="py-20 relative">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">
+            <span class="text-foreground">Proyectos</span>
+            <span class="gradient-text"> Destacados</span>
+          </h2>
+          <p class="text-xl text-muted-foreground font-inter max-w-2xl mx-auto">
+            Una selección de proyectos que demuestran mis habilidades técnicas y creatividad
+          </p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 mb-16">
+          <!-- Proyecto 1: E-Commerce Oculta Web -->
+          <div class="glass-card rounded-2xl overflow-hidden hover-glow transition-all duration-500 group">
+            <div
+              class="relative overflow-hidden gradient-secondary  backdrop-blur backdrop-blur-sm  group-hover:opacity-100 transition-opacity duration-300">
+              <div
+                class="h-64 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center animate-float">
+                <svg class="w-16 h-16 text-muted-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                  </path>
+                </svg>
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary transition-colors">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-accent transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-poppins font-semibold text-foreground mb-3">E-Commerce Oculta Web</h3>
+              <p class="text-muted-foreground font-inter mb-4 leading-relaxed">Plataforma de comercio electrónico con
+                diseño futurista, pagos integrados y gestión de inventario en tiempo real.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">JavaScript</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Node.js</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">MongoDB</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Paypal</span>
+              </div>
+              <div class="flex space-x-4">
+                <button
+                  class="bg-primary hover:bg-primary/90 text-primary-foreground flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Ver
+                  código</button>
+                <button
+                  class="border border-accent text-accent flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Demo
+              </div>
+            </div>
+          </div>
+          <!-- Proyecto 2: Mobile Banking App -->
+          <div class="glass-card rounded-2xl overflow-hidden hover-glow transition-all duration-500 group">
+            <div class="relative overflow-hidden gradient-secondary  backdrop-blur backdrop-blur-sm">
+              <div
+                class="h-64 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center animate-float">
+                <svg class="w-16 h-16 text-muted-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h4v4" />
+                </svg>
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary transition-colors"><svg
+                    class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12..." />
+                  </svg></a>
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-accent transition-colors"><svg
+                    class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-poppins font-semibold text-foreground mb-3">Mobile Banking App</h3>
+              <p class="text-muted-foreground font-inter mb-4 leading-relaxed">Aplicación móvil de banca digital con
+                autenticación biométrica y transacciones seguras.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">React
+                  Native</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Firebase</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">TypeScript</span>
+              </div>
+              <div class="flex space-x-4">
+                <button
+                  class="bg-primary hover:bg-primary/90 text-primary-foreground flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Ver
+                  código</button>
+                <button
+                  class="border border-accent text-accent flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Demo</button>
+              </div>
+            </div>
+          </div>
+          <!-- Proyecto 3: Dashboard Analytics -->
+          <div class="glass-card rounded-2xl overflow-hidden hover-glow transition-all duration-500 group">
+            <div class="relative overflow-hidden gradient-secondary  backdrop-blur">
+              <div
+                class="h-64 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center animate-float">
+                <svg class="w-16 h-16 text-muted-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16v-4m4 4V8m4 8v-2" />
+                </svg>
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary transition-colors"><svg
+                    class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12..." />
+                  </svg></a>
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-accent transition-colors"><svg
+                    class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-poppins font-semibold text-foreground mb-3">Dashboard Analytics</h3>
+              <p class="text-muted-foreground font-inter mb-4 leading-relaxed">Panel de control para visualización de
+                datos con gráficos interactivos y métricas en tiempo real.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Vue.js</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">D3.js</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Express</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">MongoDB</span>
+              </div>
+              <div class="flex space-x-4">
+                <button
+                  class="bg-primary hover:bg-primary/90 text-primary-foreground flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Ver
+                  código</button>
+                <button
+                  class="border border-accent text-accent flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Demo</button>
+              </div>
+            </div>
+          </div>
+          <!-- Proyecto 4: AI Chat Platform -->
+          <div class="glass-card rounded-2xl overflow-hidden hover-glow transition-all duration-500 group">
+            <div class="relative overflow-hidden gradient-secondary  backdrop-blur">
+              <div
+                class="h-64 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center animate-float">
+                <svg class="w-16 h-16 text-muted-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <ellipse cx="12" cy="12" rx="10" ry="8" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h8" />
+                </svg>
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary transition-colors"><svg
+                    class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12..." />
+                  </svg></a>
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-accent transition-colors"><svg
+                    class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-poppins font-semibold text-foreground mb-3">AI Chat Platform</h3>
+              <p class="text-muted-foreground font-inter mb-4 leading-relaxed">Plataforma de chat inteligente con
+                procesamiento de lenguaje natural y respuestas automatizadas.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Python</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">FastAPI</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">OpenAI</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Redis</span>
+              </div>
+              <div class="flex space-x-4">
+                <button
+                  class="bg-primary hover:bg-primary/90 text-primary-foreground flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Ver
+                  código</button>
+                <button
+                  class="border border-accent text-accent flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Demo</button>
+              </div>
+            </div>
+          </div>
+          <!-- Proyecto 5: IoT Monitoring System -->
+          <div class="glass-card rounded-2xl overflow-hidden hover-glow transition-all duration-500 ">
+            <div class="relative overflow-hidden gradient-secondary  backdrop-blur ">
+              <div class="h-64 bg-gradient from-primary/20 to-accent/20 flex items-center justify-center animate-float">
+                <svg class="w-16 h-16 text-muted-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <rect x="4" y="8" width="16" height="8" rx="2" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h8" />
+                </svg>
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary transition-colors"><svg
+                    class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12..." />
+                  </svg></a>
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-accent transition-colors"><svg
+                    class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-poppins font-semibold text-foreground mb-3">IoT Monitoring System</h3>
+              <p class="text-muted-foreground font-inter mb-4 leading-relaxed">Sistema de monitoreo para dispositivos
+                IoT con alertas en tiempo real y análisis predictivo.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Node.js</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">InfluxDB</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Docker</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">AWS</span>
+              </div>
+              <div class="flex space-x-4">
+                <button
+                  class="bg-primary hover:bg-primary/90 text-primary-foreground flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Ver
+                  código</button>
+                <button
+                  class="border border-accent text-accent flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Demo</button>
+              </div>
+            </div>
+          </div>
+          <!-- Proyecto 6: Social Media Manager -->
+          <div class="glass-card rounded-2xl overflow-hidden hover-glow transition-all duration-500 group">
+            <div class="relative overflow-hidden gradient-secondary  backdrop-blur">
+              <div
+                class="h-64 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center animate-float">
+                <svg class="w-16 h-16 text-muted-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16v-4m4 4V8m4 8v-2" />
+                </svg>
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary transition-colors"><svg
+                    class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12..." />
+                  </svg></a>
+                <a href="#"
+                  class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-accent transition-colors"><svg
+                    class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-poppins font-semibold text-foreground mb-3">Social Media Manager</h3>
+              <p class="text-muted-foreground font-inter mb-4 leading-relaxed">Herramienta para gestión de redes
+                sociales con programación de posts y análisis de engagement.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">React</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Node.js</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">MongoDB</span>
+                <span
+                  class="px-3 py-1 text-xs font-inter font-medium bg-primary/10 text-primary rounded-full border border-primary/20">Chart.js</span>
+              </div>
+              <div class="flex space-x-4">
+                <button
+                  class="bg-primary hover:bg-primary/90 text-primary-foreground flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Ver
+                  código</button>
+                <button
+                  class="border border-accent text-accent flex-1 py-2 px-4 rounded text-sm font-inter font-semibold transition-colors">Demo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="relative border-t border-white/10">
+      <div class="absolute inset-0 cyber-grid opacity-20"></div>
+      <div class="container mx-auto px-6 py-16 relative z-10">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div class="lg:col-span-2">
+            <div class="flex items-center space-x-2 mb-6">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 18a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v12z" />
+                </svg>
+              </div>
+              <span class="text-2xl font-poppins font-bold gradient-text">FullStack Developer</span>
+            </div>
+            <p class="text-muted-foreground font-inter leading-relaxed mb-6 max-w-md">Creando experiencias digitales del
+              futuro con tecnologías de vanguardia. Especializado en desarrollo full-stack con enfoque en diseño
+              innovador y funcionalidad excepcional.</p>
+            <div class="flex space-x-4">
+              <a href="#"
+                class="w-12 h-12 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover-glow transition-all duration-300"
+                aria-label="GitHub">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
+              <a href="#"
+                class="w-12 h-12 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-blue-400 hover-glow transition-all duration-300"
+                aria-label="LinkedIn">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+              <a href="#"
+                class="w-12 h-12 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-blue-400 hover-glow transition-all duration-300"
+                aria-label="Twitter">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.43.36a9.09 9.09 0 01-2.88 1.1A4.52 4.52 0 0016.11 0c-2.53 0-4.59 2.06-4.59 4.59 0 .36.04.71.11 1.05C7.69 5.5 4.07 3.6 1.64.9c-.4.69-.63 1.49-.63 2.35 0 1.62.83 3.05 2.09 3.89A4.48 4.48 0 01.96 6.1v.06c0 2.26 1.61 4.15 3.76 4.58-.39.11-.8.17-1.22.17-.3 0-.59-.03-.87-.08.59 1.85 2.3 3.2 4.33 3.24A9.06 9.06 0 010 21.54a12.8 12.8 0 006.94 2.03c8.33 0 12.89-6.9 12.89-12.89 0-.2 0-.39-.01-.58A9.22 9.22 0 0023 3z" />
+                </svg>
+              </a>
+              <a href="mailto:contact@example.com"
+                class="w-12 h-12 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-accent hover-glow transition-all duration-300"
+                aria-label="Email">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-poppins font-semibold text-foreground mb-6">Navegación</h3>
+            <ul class="space-y-2">
+              <li><a href="#inicio" class="text-muted-foreground hover:text-primary transition-colors">Inicio</a></li>
+              <li><a href="#proyectos" class="text-muted-foreground hover:text-primary transition-colors">Proyectos</a>
+              </li>
+              <li><a href="#habilidades"
+                  class="text-muted-foreground hover:text-primary transition-colors">Habilidades</a></li>
+              <li><a href="#contacto" class="text-muted-foreground hover:text-primary transition-colors">Contacto</a>
+              </li>
+            </ul>
+          </div>
+          <div class="lg:col-span-1">
+            <h3 class="text-lg font-poppins font-semibold text-foreground mb-6">Contacto</h3>
+            <p class="text-muted-foreground font-inter mb-4">¿Quieres colaborar o tienes alguna pregunta? ¡Escríbeme!
+            </p>
+            <a href="mailto:contact@example.com"
+              class="block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-inter font-semibold hover:bg-primary/90 transition-colors">Enviar
+              Email</a>
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-8 text-center text-muted-foreground font-inter">
+          &copy; <span id="year"></span> FullStack Developer. Hecho con <span class="text-primary">❤</span> y <span
+            class="text-accent">código</span>.
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

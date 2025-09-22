@@ -1,0 +1,456 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cyberpunk Neofuturistic Design System - HSL Colors */
+
+@layer base {
+  :root {
+    /* Base Cyberpunk Colors */
+    --background: 240 100% 3.1%; /* #080410 azul noche */
+    --foreground: 0 0% 95%; /* #f2f2f2 texto claro */
+
+    --card: 0 0% 10.2%; /* #1a1a1a gris muy oscuro */
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 6.3%; /* #101010 */
+    --popover-foreground: 0 0% 95%;
+
+    /* Neon Accent Colors */
+    --primary: 280 100% 50%; /* #9900ff morado eléctrico */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 300 100% 25%; /* morado oscuro */
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 15.7%; /* #282828 */
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 150 100% 50%; /* #00ff99 verde ciber */
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 340 100% 66%; /* #ff0055 rojo neón */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%; /* #333333 */
+    --input: 0 0% 15.7%;
+    --ring: 280 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Glass Effect Variables */
+    --glass-bg: 0 0% 0% / 0.3;
+    --glass-border: 0 0% 100% / 0.1;
+    --glass-blur: blur(16px);
+
+    /* Neon Glow Variables */
+    --neon-purple: 280 100% 50%;
+    --neon-green: 150 100% 50%;
+    --neon-red: 340 100% 66%;
+    --neon-blue: 200 100% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #340949cc, #083c5799);
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.1), hsl(0 0% 100% / 0.05));
+
+    /* Cyber Grid */
+    --cyber-grid: radial-gradient(circle at 50% 50%, hsl(280 100% 50% / 0.1) 1px, transparent 1px);
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(circle at 20% 50%, hsl(280 100% 50% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(150 100% 50% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(340 100% 66% / 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+}
+
+/* Cyberpunk Utilities */
+@layer utilities {
+  /* Glass Morphism Effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Neon Glow Effects */
+  .neon-purple {
+    box-shadow: 0 0 20px rgba(153, 0, 255, 0.5), 0 0 40px rgba(153, 0, 255, 0.3);
+  }
+
+  .neon-green {
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.5), 0 0 40px rgba(0, 255, 153, 0.3);
+  }
+
+  .neon-red {
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.5), 0 0 40px rgba(255, 0, 85, 0.3);
+  }
+
+  /* Cyber Grid Background */
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #9900ff, #00ff99);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hover Effects */
+  .hover-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(153, 0, 255, 0.3);
+  }
+
+  /* Custom color utilities */
+  .bg-background { background-color: hsl(var(--background)); }
+  .text-foreground { color: hsl(var(--foreground)); }
+  .text-primary { color: hsl(var(--primary)); }
+  .text-accent { color: hsl(var(--accent)); }
+  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+  .bg-primary { background-color: hsl(var(--primary)); }
+  .bg-accent { background-color: hsl(var(--accent)); }
+  .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+  .text-accent-foreground { color: hsl(var(--accent-foreground)); }
+  .border-white\/10 { border-color: rgba(255, 255, 255, 0.1); }
+  .border-white\/20 { border-color: rgba(255, 255, 255, 0.2); }
+  .bg-primary\/10 { background-color: rgba(153, 0, 255, 0.1); }
+  .bg-primary\/20 { background-color: rgba(153, 0, 255, 0.2); }
+  .text-primary\/80 { color: rgba(153, 0, 255, 0.8); }
+  .text-foreground\/80 { color: rgba(242, 242, 242, 0.8); }
+  .text-muted-foreground\/80 { color: rgba(165, 165, 165, 0.8); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(153, 0, 255, 0.8);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile Menu Animation */
+.mobile-menu-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-menu-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(153, 0, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.mobile-menu-link:hover::before {
+  left: 100%;
+}
+
+/* Loading Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Custom Button Hover Effects */
+button:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* Focus States */
+button:focus,
+a:focus,
+input:focus {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(153, 0, 255, 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* Print Styles */
+@media print {
+  .glass,
+  .glass-card,
+  .neon-purple,
+  .neon-green,
+  .neon-red {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Animaciones faltantes del proyecto original */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(280 100% 50% / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(280 100% 50% / 0.8), 0 0 60px hsl(280 100% 50% / 0.6);
+  }
+}
+
+@keyframes cyber-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Clases de animación */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-cyber-scan {
+  animation: cyber-scan 2s linear infinite;
+}
+
+/* Additional styles from React components */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Progress Circle Animation */
+@keyframes progress-fill {
+  from {
+    stroke-dasharray: 0 251;
+  }
+  to {
+    stroke-dasharray: var(--progress-value) 251;
+  }
+}
+
+/* Enhanced Glass Effects */
+.glass-enhanced {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Skill Card Hover Effects */
+.skill-card:hover .skill-icon {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Project Card Enhanced Effects */
+.project-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Navigation Link Hover Effect */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #9900ff, #00ff99);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Social Icons Enhanced */
+.social-icon {
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Mobile Menu Enhanced */
+.mobile-menu {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(8, 4, 16, 0.95);
+}
+
+/* Loading States */
+.loading-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(153, 0, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Enhanced Gradients */
+.gradient-primary {
+  background: linear-gradient(135deg, rgba(153, 0, 255, 0.8), rgba(0, 255, 153, 0.6));
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, #085e3bcc, #4d037e99);
+}
+
+/* Text Gradients */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #9900ff, #00ff99);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: linear-gradient(135deg, #00ff99, #9900ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Border Gradients */
+.border-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(153, 0, 255, 0.3), rgba(0, 255, 153, 0.3)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+  .mobile-optimized {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .mobile-glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-glow-pulse,
+  .animate-cyber-scan {
+    animation: none;
+  }
+
+  .hover-glow:hover {
+    transform: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .glass,
+  .glass-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
